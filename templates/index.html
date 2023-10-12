@@ -7,11 +7,10 @@
     <title>Encrypted Cloud Storage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 
 <body>
-
     <div class="h-screen mainBox">
         <div class="heading fixed top-0 w-full"> <!--fixed top-0 w-full-->
             <div class="w-full h-14 flex items-center bg-blue-100">
@@ -37,13 +36,16 @@
             <!-- get ur json file -->
             <div class="json h-16 w-full border border-black flex flex-row items-center justify-between">
                 <div class="text ml-2">
-                    <kbd>Get yourself a .json file on Google Cloud Console </kbd><a class="text-gray-400" target="_blank"
+                    <kbd>Get yourself a .json file on Google Cloud Console </kbd><a class="text-gray-400"
+                        target="_blank"
                         href="https://support.site24x7.com/portal/en/kb/articles/how-to-upload-a-service-account-json-file-to-authenticate-site24x7-for-discovery-of-gcp-resources">
                         (Learn More) </a>
                 </div>
                 <div class="or mr-2">
-                    <input type="file" value="keyFile">
-                    <button class="border border-black p-1 rounded-sm">Upload</button>
+                    <form action="/" method="post" enctype="multipart/form-data">
+                        <input type="file" value="keyFile" name="file">
+                        <button class="border border-black p-1 rounded-sm">Upload</button>
+                    </form>
                 </div>
             </div>
             <!-- Key Generation or Upload key file -->
@@ -78,7 +80,7 @@
         <div class="services" id="services">
             <div class="uploadFiles h-96 border border-black">
                 <!-- upload files here -->
-                <div class="uploadbox h-96 flex items-center justify-center">
+                <div class="uploadbox h-96 flex flex-col items-center justify-evenly">
                     <div id="drop-area"
                         class="border-2 border-dashed border-gray-300 h-80 cursor-pointer rounded-sm flex flex-col items-center justify-center"
                         style="width: 50%;">
@@ -86,6 +88,11 @@
                             <input type="file" id="fileInput" multiple>
                             <p>Drag & Drop files here or click to select files</p>
                         </div>
+                    </div>
+                    <div class="upload flex flex-row">
+                        <kbd>Encrypt and Upload it :</kbd>
+                        <button class="pl-2 pr-2 bg-gray-300 rounded-md flex-row items-center gap-2"><i
+                                class="fa-solid fa-check"></i> Click Here</button>
                     </div>
                 </div>
             </div>
