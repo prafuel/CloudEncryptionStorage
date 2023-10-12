@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
+<style>
+    button:hover{
+        background-color: black;
+        color: white;
+    }
+</style>
 
 <body>
     <div class="h-screen mainBox">
@@ -33,6 +39,33 @@
         <div class="headingMargin h-14"></div>
 
         <div class="config h-60 bg-white pl-3 pr-3 flex flex-col gap-3 justify-center" id="config">
+            <!-- Encrypt , Decrypt , Generate-->
+            <div class="options h-16 w-full border border-black flex flex-row gap-5 justify-around items-center">
+                <!-- Encrypt -->
+                <div class="encrypt border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                    <i class="fa-solid fa-lock p-2 fa-lg"></i>
+                    <button class="p-2 pl-2"><a href="/encrypt"><kbd>Encrypt</kbd></a></button>
+                </div>
+                <!-- Decrypt -->
+                <div class="decrypt border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                    <i class="fa-solid fa-lock-open p-2 fa-lg"></i>
+                    <button class="p-2 pl-2">Decrypt</button>
+                </div>
+
+                <!-- Generate -->
+                <div class="generate  border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                    <i class="fa-brands fa-superpowers p-2 fa-lg"></i>
+                    <button class="p-2 pl-2">Generate</button>
+                </div>
+
+                <!-- Refresh -->
+                <div class="refresh  border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                    <i class="fa-solid fa-arrows-rotate p-2 fa-lg"></i>
+                    <a href="/" class="p-2 pl-2">Refresh</a>
+                </div>
+
+            </div>
+
             <!-- get ur json file -->
             <div class="json h-16 w-full border border-black flex flex-row items-center justify-between">
                 <div class="text ml-2">
@@ -42,36 +75,22 @@
                         (Learn More) </a>
                 </div>
                 <div class="or mr-2">
-                    <form action="/" method="post" enctype="multipart/form-data">
-                        <input type="file" value="keyFile" name="file">
-                        <button class="border border-black p-1 rounded-sm">Upload</button>
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        <input type="file" value="jsonFile" name="jsonFile">
+                        <button class="border border-black p-1 rounded-sm" type="submit">Upload</button>
                     </form>
                 </div>
             </div>
             <!-- Key Generation or Upload key file -->
             <div class="key h-16 w-full border border-black flex flex-row items-center">
                 <div class="w-full generate_key flex items-center justify-between ml-2 mr-2">
-                    <kbd>Generate or Upload Key file (example.key): </kbd>
+                    <kbd>Generate or Upload Key file (example.key): <span class="text-red-400">(if new key file is uploaded previous one will be overrated)</span></kbd>
                     <div class="or flex flex-row justify-between items-center gap-3">
-                        <button class="border border-black p-1 rounded-sm">Generate</button>
-                        OR
-                        <input type="file" value="keyFile">
-                        <button class="border border-black p-1 rounded-sm">Upload</button>
+                        <form action="/" method="POST" enctype="multipart/form-data">
+                            <input type="file" value="keyFile" name="keyFile">
+                            <button class="border border-black p-1 rounded-sm" type="submit">Upload</button>
+                        </form>
                     </div>
-                </div>
-            </div>
-
-            <!-- Encrypt , Decrypt -->
-            <div class="options h-16 w-full border border-black flex flex-row gap-5 justify-center items-center">
-                <!-- Encrypt -->
-                <div class="encrypt border border-black flex items-center">
-                    <i class="fa-solid fa-lock p-2"></i>
-                    <Button class="p-2 pl-2">Encrypt</Button>
-                </div>
-                <!-- Decrypt -->
-                <div class="decrypt  border border-black flex items-center">
-                    <i class="fa-solid fa-lock-open p-2"></i>
-                    <Button class="p-2 pl-2">Decrypt</Button>
                 </div>
             </div>
 
@@ -80,21 +99,23 @@
         <div class="services" id="services">
             <div class="uploadFiles h-96 border border-black">
                 <!-- upload files here -->
-                <div class="uploadbox h-96 flex flex-col items-center justify-evenly">
-                    <div id="drop-area"
-                        class="border-2 border-dashed border-gray-300 h-80 cursor-pointer rounded-sm flex flex-col items-center justify-center"
-                        style="width: 50%;">
-                        <div class="flex flex-col justify-start gap-3">
-                            <input type="file" id="fileInput" multiple>
-                            <p>Drag & Drop files here or click to select files</p>
+                <form action="/" method="POST" enctype="multipart/form-data">
+                    <div class="uploadbox h-96 flex flex-col items-center justify-evenly">
+                        <div id="drop-area"
+                            class="border-2 border-dashed border-gray-300 h-80 cursor-pointer rounded-sm flex flex-col items-center justify-center"
+                            style="width: 50%;">
+                            <div class="flex flex-col justify-start gap-3">
+                                <input type="file" value="fileInput" name="fileInput">
+                                <p>Drag & Drop files here or click to select files</p>
+                            </div>
+                        </div>
+                        <div class="upload flex flex-row items-center">
+                            <kbd><span class="text-blue-900"><b>Encrypt</b></span> and <span class="text-blue-900"><b>Upload</b></span> it on drive :</kbd>
+                            <button class="ml-3 pl-2 pr-2 border border-black flex-row items-center gap-2" type="submit"><i
+                                    class="fa-solid fa-check"></i> Click Here</button>
                         </div>
                     </div>
-                    <div class="upload flex flex-row items-center">
-                        <kbd>Encrypt and Upload it :</kbd>
-                        <button class="pl-2 pr-2 border border-black flex-row items-center gap-2"><i
-                                class="fa-solid fa-check"></i> Click Here</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
 
