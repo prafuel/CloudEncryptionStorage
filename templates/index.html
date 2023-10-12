@@ -10,14 +10,14 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <style>
-    button:hover{
+    button:hover {
         background-color: black;
         color: white;
     }
 </style>
 
 <body>
-    <div class="h-screen mainBox">
+    <div class="h-screen mainBox flex flex-col gap-8">
         <div class="heading fixed top-0 w-full"> <!--fixed top-0 w-full-->
             <div class="w-full h-14 flex items-center bg-blue-100">
                 <div class="w-full logo flex flex-row items-center gap-1"><i
@@ -39,30 +39,50 @@
         <div class="headingMargin h-14"></div>
 
         <div class="config h-60 bg-white pl-3 pr-3 flex flex-col gap-3 justify-center" id="config">
-            <!-- Encrypt , Decrypt , Generate-->
+            <!-- Encrypt , Decrypt , Generate , View, Refresh -->
             <div class="options h-16 w-full border border-black flex flex-row gap-5 justify-around items-center">
                 <!-- Encrypt -->
-                <div class="encrypt border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                    <i class="fa-solid fa-lock p-2 fa-lg"></i>
-                    <button class="p-2 pl-2"><a href="/encrypt"><kbd>Encrypt</kbd></a></button>
-                </div>
+                <a href="/encrypt">
+                    <div class="encrypt border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-lock p-2 fa-lg"></i>
+                        <button class="p-2 pl-2"><kbd>Encrypt</kbd></button>
+                    </div>
+                </a>
                 <!-- Decrypt -->
                 <div class="decrypt border border-gray-500 flex items-center hover:bg-black hover:text-white">
                     <i class="fa-solid fa-lock-open p-2 fa-lg"></i>
                     <button class="p-2 pl-2">Decrypt</button>
                 </div>
 
-                <!-- Generate -->
-                <div class="generate  border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                    <i class="fa-brands fa-superpowers p-2 fa-lg"></i>
-                    <button class="p-2 pl-2">Generate</button>
+                <!-- Create -->
+                <div class="create border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                    <i class="fa-solid fa-circle-plus p-2 fa-lg"></i>
+                    <button class="p-2 pl-2">Create</button>
                 </div>
 
+                <!-- Generate -->
+                <a href="/download">
+                    <div class="download border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-download p-2 fa-lg"></i>
+                        <button class="p-2 pl-2">Download Current Key</button>
+                    </div>
+                </a>
+
+                <!-- View -->
+                <a href="/keys">
+                    <div class="view border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-eye fa-lg p-2"></i>
+                        <button class="p-2 pl-2">View</button>
+                    </div>
+                </a>
+
                 <!-- Refresh -->
-                <div class="refresh  border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                    <i class="fa-solid fa-arrows-rotate p-2 fa-lg"></i>
-                    <a href="/" class="p-2 pl-2">Refresh</a>
-                </div>
+                <a href="/">
+                    <div class="refresh  border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-arrows-rotate p-2 fa-lg"></i>
+                        <button href="/" class="p-2 pl-2">Refresh</button>
+                    </div>
+                </a>
 
             </div>
 
@@ -72,7 +92,7 @@
                     <kbd>Get yourself a .json file on Google Cloud Console </kbd><a class="text-gray-400"
                         target="_blank"
                         href="https://support.site24x7.com/portal/en/kb/articles/how-to-upload-a-service-account-json-file-to-authenticate-site24x7-for-discovery-of-gcp-resources">
-                        (Learn More) </a>
+                        (Learn More)</a> *
                 </div>
                 <div class="or mr-2">
                     <form action="/" method="POST" enctype="multipart/form-data">
@@ -84,7 +104,8 @@
             <!-- Key Generation or Upload key file -->
             <div class="key h-16 w-full border border-black flex flex-row items-center">
                 <div class="w-full generate_key flex items-center justify-between ml-2 mr-2">
-                    <kbd>Generate or Upload Key file (example.key): <span class="text-red-400">(if new key file is uploaded previous one will be overrated)</span></kbd>
+                    <kbd>Generate or Upload Key file (example.key): <span class="text-red-600">(if new key file is
+                            existed previous one will be overrated)</span></kbd>
                     <div class="or flex flex-row justify-between items-center gap-3">
                         <form action="/" method="POST" enctype="multipart/form-data">
                             <input type="file" value="keyFile" name="keyFile">
@@ -97,7 +118,7 @@
         </div>
 
         <div class="services" id="services">
-            <div class="uploadFiles h-96 border border-black">
+            <div class="uploadFiles h-96">
                 <!-- upload files here -->
                 <form action="/" method="POST" enctype="multipart/form-data">
                     <div class="uploadbox h-96 flex flex-col items-center justify-evenly">
@@ -110,18 +131,28 @@
                             </div>
                         </div>
                         <div class="upload flex flex-row items-center">
-                            <kbd><span class="text-blue-900"><b>Encrypt</b></span> and <span class="text-blue-900"><b>Upload</b></span> it on drive :</kbd>
-                            <button class="ml-3 pl-2 pr-2 border border-black flex-row items-center gap-2" type="submit"><i
-                                    class="fa-solid fa-check"></i> Click Here</button>
+                            <kbd><span class="text-blue-900"><b>Encrypt</b></span> and <span
+                                    class="text-blue-900"><b>Upload</b></span> it on drive!!!</kbd>
+                            <button class="ml-3 pl-2 pr-2 border border-black flex-row items-center gap-2"
+                                type="submit"><i class="fa-solid fa-check"></i> Click Here</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
+        <footer class="h-20 bg-gray-900 social flex justify-evenly items-center text-white">
+            <div class="instagram"><a target="_blank" href="https://www.instagram.com/just_prafull/"><i
+                        class="fa-brands fa-instagram fa-2xl"></i></a></div>
+            <div class="github"><a target="_blank" href="https://github.com/prafuel"><i
+                        class="fa-brands fa-github fa-2xl"></i></a></div>
+            <div class="linkedin"><a target="_blank" href="https://www.linkedin.com/in/prafull-sonawane-79a401231/"><i
+                        class="fa-brands fa-linkedin fa-2xl"></i></a></div>
+        </footer>
+
     </div>
 
-    <script src="../web/scripts/index.js"></script>
+    <script src="../scripts/index.js"></script>
 </body>
 
 </html>

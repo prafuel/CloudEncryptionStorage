@@ -1,5 +1,11 @@
 from flask import *
 import os
+from datetime import datetime
+
+# Local Modules
+from src.encrypt import generate_key,load_key
+
+key_history = "/home/version/Desktop/cc/src/keys/key_history.txt"
 
 app = Flask("__name__")
 
@@ -25,7 +31,10 @@ def index() :
             if key_file:
                 key_file.save(os.path.join(app.config['KEY_FILE'], "encryption_key.key"))
                 uploaded_files['keyFile'] = os.path.join(app.config['KEY_FILE'], "encryption_key.key")
-        
+
+                with open(key_history,"a") as k:
+                    k.write(str(datetime.now())+ ", " + str(load_key("/home/version/Desktop/cc/src/keys/encryption_key.key")) + "\n")
+
         # Check if a file was uploaded with the name 'fileInput'
         if "fileInput" in request.files:
             fileInput = request.files['fileInput']
@@ -36,6 +45,26 @@ def index() :
         return render_template("index.html")
 
     return render_template("index.html")
+
+@app.route("/keys",methods=["GET"])
+def viewKey():
+    keyList = []
+    with open(key_history,"r") as keys:
+        for key in keys:
+            keyList.append(key.strip())
+    return keyList
+
+@app.route("/download",methods=["GET"])
+def download():
+    # New Key
+    key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
+    key = load_key(key_file)
+
+    # with open(key_history,"a") as k:
+    #     k.write(str(datetime.now())+ ", " + str(key) + "\n")
+
+    return send_file(key_file, as_attachment=True)
+    
 
 @app.route("/encrypt",methods=['GET'])
 def encrypt():
