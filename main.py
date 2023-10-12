@@ -23,7 +23,7 @@ if __name__ == "__main__":
     # Files to be encrypted 
     folder_path = "./original/"
 
-    ''' file_names = os.listdir(folder_path)
+    file_names = os.listdir(folder_path)
     for name in file_names:
         file = f"{folder_path}{name}"
         # Encrypt Files 
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     for name in file_names:
         file = f"{folder_path}{name}"
         print(file)
-        on_drive(JSON_KEY_FILE,file) '''
+        on_drive(JSON_KEY_FILE,file)
 
 
     JSON_KEY_FILE = "src/json_key/southern-branch-377015.json"
