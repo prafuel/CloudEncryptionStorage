@@ -46,6 +46,7 @@ def decrypt_all_files(key, input_folder, output_folder):
             decrypt_file(key, input_file, output_file)
 
 if __name__ == "__main__":
+
     key_file = './keys/encryption_key.key'
     input_folder = './original'
     encrypted_folder = './Encrypted'
