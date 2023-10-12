@@ -42,8 +42,8 @@
                         (Learn More) </a>
                 </div>
                 <div class="or mr-2">
-                    <form action="/" method="post" enctype="multipart/form-data">
-                        <input type="file" value="keyFile" name="file">
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        <input type="file" value="keyFile" name="jsonFile">
                         <button class="border border-black p-1 rounded-sm">Upload</button>
                     </form>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="or flex flex-row justify-between items-center gap-3">
                         <button class="border border-black p-1 rounded-sm">Generate</button>
                         OR
-                        <input type="file" value="keyFile">
+                        <input type="file" value="keyFile" name="keyFile">
                         <button class="border border-black p-1 rounded-sm">Upload</button>
                     </div>
                 </div>
