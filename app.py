@@ -97,9 +97,9 @@ def encrypt():
                 uploaded_files['INPUT_FILE'] = os.path.join(app.config['INPUT_FILE'], encryptFile.filename)
 
                 key = load_key("src/keys/encryption_key.key")
-                print(key)
-                encrypt_file(key,f"original/{encryptFile.filename}",f"#test/Encrypted/{encryptFile.filename}")
-                return send_file(f"#test/Encrypted/{encryptFile.filename}", as_attachment=True)
+                # print(key)
+                encrypt_file(key,f"original/{encryptFile.filename}",f"#test/Encrypted/encrypted_{encryptFile.filename}")
+                return send_file(f"#test/Encrypted/encrypted_{encryptFile.filename}", as_attachment=True)
 
     return render_template("encrypt.html")
 

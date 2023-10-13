@@ -9,56 +9,63 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
     <script src="../static/encrypt.js" defer></script>
 </head>
+<style>
+    .tempWidth{
+        width: 100rem;
+    }
+</style>
 
 <body>
     <div class="encryptBox h-screen flex justify-center items-center">
-        <div class="uploadFiles h-96 w-full">
-            <div class="options h-full w-96 flex flex-col absolute left-0 top-0 gap-3 p-3 bg-blue-50"> 
-                
-                <!-- Back -->
-                <a href="/">
-                    <div class="back border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                        <i class="fa-solid fa-arrow-left p-2 fa-lg"></i>
-                        <button class="p-2 pl-2">Back</button>
-                    </div>
-                </a>
-                <!-- Create new -->
-                <a href="/download/create_key">
-                    <div class="create border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                        <i class="fa-solid fa-circle-plus p-2 fa-lg"></i>
-                        <button class="p-2 pl-2">Create new key file</button>
-                    </div>
-                </a>
-                <!-- View Current key -->
-                <a href="/download/current_key">
-                    <div class="download border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                        <i class="fa-solid fa-download p-2 fa-lg"></i>
-                        <button class="p-2 pl-2">Download Current Key</button>
-                    </div>
-                </a>
-                <!-- Upload key file -->
-                <a href="/">
-                    <div class="upload border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                        <i class="fa-solid fa-upload p-2 fa-lg"></i>
-                        <button class="p-2 pl-2">Upload Key file</button>
-                    </div>
-                </a>
+        <div class="uploadFiles h-96 tempWidth">
+            <div class="options h-full w-96 absolute left-0 top-0 p-3 bg-blue-50">
+                <div class="group flex flex-col gap-3">
+                    <!-- Back -->
+                    <a href="/">
+                        <div class="back border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                            <i class="fa-solid fa-arrow-left p-2 fa-lg"></i>
+                            <button class="p-2 pl-2">Back</button>
+                        </div>
+                    </a>
+                    <!-- Create new -->
+                    <a href="/download/create_key">
+                        <div class="create border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                            <i class="fa-solid fa-circle-plus p-2 fa-lg"></i>
+                            <button class="p-2 pl-2">Create New Key</button>
+                        </div>
+                    </a>
+                    <!-- View Current key -->
+                    <a href="/download/current_key">
+                        <div class="download border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                            <i class="fa-solid fa-download p-2 fa-lg"></i>
+                            <button class="p-2 pl-2">Download Current Key</button>
+                        </div>
+                    </a>
+                    <!-- Upload key file -->
+                    <a href="/">
+                        <div class="upload border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                            <i class="fa-solid fa-upload p-2 fa-lg"></i>
+                            <button class="p-2 pl-2">Upload Key file</button>
+                        </div>
+                    </a>
 
-                <!-- View -->
-                <a href="/keys">
-                    <div class="view border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                        <i class="fa-solid fa-eye fa-lg p-2"></i>
-                        <button class="p-2 pl-2">View</button>
-                    </div>
-                </a>
+                    <!-- View -->
+                    <a href="/keys">
+                        <div class="view border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                            <i class="fa-solid fa-eye fa-lg p-2"></i>
+                            <button class="p-2 pl-2">View</button>
+                        </div>
+                    </a>
 
-                <!-- Refresh -->
-                <a href="/encrypt">
-                    <div class="refresh  border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                        <i class="fa-solid fa-arrows-rotate p-2 fa-lg"></i>
-                        <button href="/" class="p-2 pl-2">Refresh</button>
-                    </div>
-                </a>
+                    <!-- Refresh -->
+                    <a href="/encrypt">
+                        <div class="refresh  border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                            <i class="fa-solid fa-arrows-rotate p-2 fa-lg"></i>
+                            <button href="/" class="p-2 pl-2">Refresh</button>
+                        </div>
+                    </a>
+                </div>
+
             </div>
             <!-- upload files here -->
             <form action="/encrypt" method="POST" enctype="multipart/form-data">
@@ -72,13 +79,24 @@
                         </div>
                     </div>
                     <div class="upload flex flex-row items-center">
-                        <kbd><span class="text-blue-900"><b>Encrypt</b></span> it!!!</kbd>
+                        <kbd><span class="text-blue-900 text-xl"><b>Encrypt</b></span> it!!!</kbd>
                         <button class="uploadbtn ml-3 pl-2 pr-2 border border-black flex-row items-center gap-2"><i
                                 class="fa-solid fa-check" type="submit"></i> Click Here</button>
                     </div>
                 </div>
             </form>
         </div>
+        <footer class="fixed bottom-0 h-16 w-full">
+            <div class="h-16 bg-gray-900 social flex justify-evenly items-center text-white">
+                <div class="instagram"><a target="_blank" href="https://www.instagram.com/just_prafull/"><i
+                            class="fa-brands fa-instagram fa-2xl"></i></a></div>
+                <div class="github"><a target="_blank" href="https://github.com/prafuel"><i
+                            class="fa-brands fa-github fa-2xl"></i></a></div>
+                <div class="linkedin"><a target="_blank"
+                        href="https://www.linkedin.com/in/prafull-sonawane-79a401231/"><i
+                            class="fa-brands fa-linkedin fa-2xl"></i></a></div>
+            </div>
+        </footer>
     </div>
 </body>
 
