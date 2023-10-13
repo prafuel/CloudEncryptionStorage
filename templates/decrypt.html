@@ -93,7 +93,7 @@
                 </a>
 
                 <!-- Refresh -->
-                <a href="/encrypt">
+                <a href="/decrypt">
                     <div class="refresh flex items-center bg-yellow-500">
                         <i class="fa-solid fa-arrows-rotate p-2 fa-lg"></i>
                         <button class="p-2 pl-2">Refresh</button>
@@ -112,18 +112,18 @@
         </div>
         <div class="uploadFiles h-96 tempWidth">
             <!-- upload files here -->
-            <form action="/encrypt" method="POST" enctype="multipart/form-data" class="flex flex-row">
+            <form action="/decrypt" method="POST" enctype="multipart/form-data" class="flex flex-row">
                 <div class="uploadbox h-96 w-full flex flex-col items-center justify-evenly">
                     <div id="drop-area"
                         class="border-2 border-dashed border-gray-300 h-80 cursor-pointer rounded-sm flex flex-col items-center justify-center"
                         style="width: 50%;background-color: rgba(11, 13, 17, 0.6);">
                         <div class="flex flex-col justify-start gap-3 text-white">
-                            <input type="file" value="encryptFile" name="encryptFile">
+                            <input type="file" value="decryptFile" name="decryptFile">
                             <p class="text-white">Drag & Drop files here or click to select files</p>
                         </div>
                     </div>
                     <div class="upload flex flex-row items-center">
-                        <kbd class="text-white">Choose File & <span class="text-blue-500 text-xl"><b>Encrypt</b></span> it!!!</kbd>
+                        <kbd class="text-white">Choose File & <span class="text-blue-500 text-xl"><b>Decrypt</b></span> it!!!</kbd>
                         <button class="uploadbtn ml-3 p-1 flex-row items-center gap-2 bg-yellow-500 rounded-lg"><i
                                 class="fa-solid fa-check" type="submit"></i> Click Here</button>
                     </div>

@@ -4,7 +4,7 @@ from datetime import datetime
 from random import randint
 
 # Local Modules
-from src.encrypt import generate_key,load_key,encrypt_file
+from src.encrypt import generate_key,load_key,encrypt_file,decrypt_file
 
 key_history = "/home/version/Desktop/cc/src/keys/key_history.txt"
 
@@ -81,7 +81,7 @@ def create_new():
     return send_file(key_file, as_attachment=True)
     
 
-@app.route("/encrypt/",methods=['GET','POST'])
+@app.route("/encrypt",methods=['GET','POST'])
 def encrypt():
     if request.method == "POST":
         uploaded_files = {}
@@ -94,10 +94,34 @@ def encrypt():
 
                 key = load_key("src/keys/encryption_key.key")
                 # print(key)
-                encrypt_file(key,f"original/{encryptFile.filename}",f"#test/Encrypted/encrypted_{encryptFile.filename}")
-                return send_file(f"#test/Encrypted/encrypted_{encryptFile.filename}", as_attachment=True)
+                try:
+                    encrypt_file(key,f"original/{encryptFile.filename}",f"#test/Encrypted/encrypted_{encryptFile.filename}")
+                    return send_file(f"#test/Encrypted/encrypted_{encryptFile.filename}", as_attachment=True)
+                except:
+                    pass
 
     return render_template("encrypt.html")
+
+@app.route("/decrypt",methods=['GET','POST'])
+def decrypt():
+    if request.method == "POST":
+        uploaded_files = {}
+
+        if "decryptFile" in request.files:
+            decryptFile = request.files["decryptFile"]
+            if decryptFile:
+                decryptFile.save(os.path.join(app.config['INPUT_FILE'], decryptFile.filename))
+                uploaded_files['INPUT_FILE'] = os.path.join(app.config['INPUT_FILE'], decryptFile.filename)
+
+                key = load_key("src/keys/encryption_key.key")
+                # print(key)
+                try:
+                    decrypt_file(key,f"original/{decryptFile.filename}",f"#test/Decrypted/decrypted_{decryptFile.filename}")
+                    return send_file(f"#test/Decrypted/decrypted_{decryptFile.filename}",as_attachment=True)
+                except:
+                    return "Uploaded File Format is Not supported"
+
+    return render_template("decrypt.html")
 
 @app.route('/history',methods=["GET"])
 def history():
@@ -109,4 +133,4 @@ def history():
 
 
 if __name__ == "__main__" :
-    app.run(debug=True, port=8000)
+    app.run(debug=True, port=8080)

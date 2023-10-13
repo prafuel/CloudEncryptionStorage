@@ -1,7 +1,0 @@
-A random line is a trial survey line that runs from a station toward a predetermined point that cannot be seen from the station. It avoids obstacles between stations. 
-You can randomize text lines using these tools: 
-Notepad++: Select the lines to randomize, then go to the NPP menu, Plugins, Python Script, Scripts, and RandomizeLines.
-Browserling: Paste your text in the form, then press the Randomize Lines button.
-IPVoid: Paste the text, then press the Randomize Lines button.
-Online Random Tools: Paste the text, then click the Shuffle Lines button.
-You can also find free graphic resources for random lines on Freepik
