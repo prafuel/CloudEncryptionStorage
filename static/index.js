@@ -19,3 +19,6 @@ dropArea.addEventListener('drop', (e) => {
 
     handleFiles(files);
 });
+
+const clickHere = document.querySelector(".upload button");
+console.log(clickHere);

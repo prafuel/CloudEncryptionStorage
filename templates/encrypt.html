@@ -18,7 +18,7 @@
 <body>
     <div class="encryptBox h-screen flex justify-center items-center">
         <div class="uploadFiles h-96 tempWidth">
-            <div class="options h-full w-96 absolute left-0 top-0 p-3 bg-blue-50">
+            <div class="options h-full w-96 absolute left-0 top-0 p-3 bg-blue-50 flex flex-col justify-between">
                 <div class="group flex flex-col gap-3">
                     <!-- Back -->
                     <a href="/">
@@ -61,14 +61,23 @@
                     <a href="/encrypt">
                         <div class="refresh  border border-gray-500 flex items-center hover:bg-black hover:text-white">
                             <i class="fa-solid fa-arrows-rotate p-2 fa-lg"></i>
-                            <button href="/" class="p-2 pl-2">Refresh</button>
+                            <button class="p-2 pl-2">Refresh</button>
                         </div>
                     </a>
                 </div>
 
+                <div class="group2 mb-16">
+                    <!-- History -->
+                    <a href="/history">
+                        <div class="history border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                            <i class="fa-solid fa-clock-rotate-left p-2 fa-lg"></i>
+                            <button class="p-2 pl-2">History</button>
+                        </div>
+                    </a>
+                </div>
             </div>
             <!-- upload files here -->
-            <form action="/encrypt" method="POST" enctype="multipart/form-data">
+            <form action="/encrypt" method="POST" enctype="multipart/form-data" class="flex flex-row">
                 <div class="uploadbox h-96 w-full flex flex-col items-center justify-evenly">
                     <div id="drop-area"
                         class="border-2 border-dashed border-gray-300 h-80 cursor-pointer rounded-sm flex flex-col items-center justify-center"

@@ -50,10 +50,6 @@ def index() :
 @app.route("/keys/",methods=["GET"])
 def viewKey():
     key = None
-    # with open(key_history,"r") as keys:
-    #     for key in keys:
-    #         keyList.append(key.strip())
-    # return keyList
     try:
         key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
         key = load_key(key_file)
@@ -69,8 +65,8 @@ def download_key():
         key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
         key = load_key(key_file)
 
-        # with open(key_history,"a") as k:
-        #     k.write(str(datetime.now())+ ", " + str(key) + "\n")
+        with open(key_history,"a") as k:
+            k.write(str(datetime.now())+ ", " + str(key) + "\n")
         return send_file(key_file, as_attachment=True)
     except:
         return redirect("/download/create_key/")
@@ -102,6 +98,15 @@ def encrypt():
                 return send_file(f"#test/Encrypted/encrypted_{encryptFile.filename}", as_attachment=True)
 
     return render_template("encrypt.html")
+
+@app.route('/history',methods=["GET"])
+def history():
+    keyList = []
+    with open(key_history,"r") as keys:
+        for key in keys:
+            keyList.append(key.strip())
+    return keyList
+
 
 if __name__ == "__main__" :
     app.run(debug=True, port=8000)
