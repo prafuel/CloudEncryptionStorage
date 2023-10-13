@@ -14,11 +14,15 @@
         background-color: black;
         color: white;
     }
+
+    .tempHeight {
+        height: 100vh;
+    }
 </style>
 
-<body>
+<body class="scroll-smooth">
     <div class="h-screen mainBox flex flex-col gap-8">
-        <div class="heading fixed top-0 w-full"> <!--fixed top-0 w-full-->
+        <div class="heading absolute top-0 w-full"> <!--fixed top-0 w-full-->
             <div class="w-full h-14 flex items-center bg-blue-100">
                 <div class="w-full logo flex flex-row items-center gap-1"><i
                         class="fa-solid fa-cloud fa-lg p-3"></i><kbd>Encrypted Cloud Storage</kbd>
@@ -36,7 +40,7 @@
             </div>
         </div>
 
-        <div class="headingMargin h-14"></div>
+        <div class="headingMargin h-10"></div>
 
         <div class="config h-60 bg-white pl-3 pr-3 flex flex-col gap-3 justify-center" id="config">
             <!-- Encrypt , Decrypt , Generate , View, Refresh -->
@@ -55,13 +59,15 @@
                 </div>
 
                 <!-- Create -->
-                <div class="create border border-gray-500 flex items-center hover:bg-black hover:text-white">
-                    <i class="fa-solid fa-circle-plus p-2 fa-lg"></i>
-                    <button class="p-2 pl-2">Create</button>
-                </div>
+                <a href="/download/create_key">
+                    <div class="create border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-circle-plus p-2 fa-lg"></i>
+                        <button class="p-2 pl-2">Create</button>
+                    </div>
+                </a>
 
                 <!-- Generate -->
-                <a href="/download">
+                <a href="/download/current_key">
                     <div class="download border border-gray-500 flex items-center hover:bg-black hover:text-white">
                         <i class="fa-solid fa-download p-2 fa-lg"></i>
                         <button class="p-2 pl-2">Download Current Key</button>
@@ -141,13 +147,16 @@
             </div>
         </div>
 
-        <footer class="h-20 bg-gray-900 social flex justify-evenly items-center text-white">
-            <div class="instagram"><a target="_blank" href="https://www.instagram.com/just_prafull/"><i
-                        class="fa-brands fa-instagram fa-2xl"></i></a></div>
-            <div class="github"><a target="_blank" href="https://github.com/prafuel"><i
-                        class="fa-brands fa-github fa-2xl"></i></a></div>
-            <div class="linkedin"><a target="_blank" href="https://www.linkedin.com/in/prafull-sonawane-79a401231/"><i
-                        class="fa-brands fa-linkedin fa-2xl"></i></a></div>
+        <footer class="fixed bottom-0 h-16 w-full">
+            <div class="h-16 bg-gray-900 social flex justify-evenly items-center text-white">
+                <div class="instagram"><a target="_blank" href="https://www.instagram.com/just_prafull/"><i
+                            class="fa-brands fa-instagram fa-2xl"></i></a></div>
+                <div class="github"><a target="_blank" href="https://github.com/prafuel"><i
+                            class="fa-brands fa-github fa-2xl"></i></a></div>
+                <div class="linkedin"><a target="_blank"
+                        href="https://www.linkedin.com/in/prafull-sonawane-79a401231/"><i
+                            class="fa-brands fa-linkedin fa-2xl"></i></a></div>
+            </div>
         </footer>
 
     </div>

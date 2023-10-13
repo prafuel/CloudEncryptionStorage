@@ -1,4 +1,0 @@
-
-text_data.txt: 15D2qlQ7myw243qJ30LT8oOEBITRU_K_t
-decrypt_original_data.py: 1hJfpdgcywPfpNzXMwYmVCDBvaxzCOHmc
-text_data2.txt: 10uOiyklQdpOT-iWI21Lf0gqOD1SkoLyH

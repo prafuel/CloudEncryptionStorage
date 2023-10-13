@@ -1,6 +1,7 @@
 from flask import *
 import os
 from datetime import datetime
+from random import randint
 
 # Local Modules
 from src.encrypt import generate_key,load_key
@@ -22,8 +23,8 @@ def index() :
         if 'jsonFile' in request.files:
             json_file = request.files['jsonFile']
             if json_file:
-                json_file.save(os.path.join(app.config['JSON_FILE'], json_file.filename))
-                uploaded_files['jsonFile'] = os.path.join(app.config['JSON_FILE'], json_file.filename)
+                json_file.save(os.path.join(app.config['JSON_FILE'], "southern-branch-377015.json"))
+                uploaded_files['jsonFile'] = os.path.join(app.config['JSON_FILE'], "southern-branch-377015.json")
 
         # Check if a file was uploaded with the name 'keyFile'
         if 'keyFile' in request.files:
@@ -54,15 +55,23 @@ def viewKey():
             keyList.append(key.strip())
     return keyList
 
-@app.route("/download",methods=["GET"])
-def download():
+@app.route("/download/current_key",methods=["GET"])
+def download_key():
     # New Key
     key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
     key = load_key(key_file)
 
     # with open(key_history,"a") as k:
     #     k.write(str(datetime.now())+ ", " + str(key) + "\n")
+    return send_file(key_file, as_attachment=True)
 
+@app.route("/download/create_key",methods=["GET"])
+def create_new():
+    key_file = f"/home/version/Desktop/cc/#test/generated_keys/{str(randint(1,100000))}.key"
+    key = generate_key(key_file)
+
+    with open(key_history,"a") as k:
+        k.write(str(datetime.now())+ ", " + str(key) + "\n")
     return send_file(key_file, as_attachment=True)
     
 
