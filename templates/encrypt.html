@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypted Cloud Storage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+    <script src="../static/encrypt.js" defer></script>
+</head>
+
+<body>
+    <div class="encryptBox h-screen flex justify-center items-center">
+        <div class="uploadFiles h-96 w-full">
+            <div class="options h-full w-96 flex flex-col absolute left-0 top-0 gap-3 p-3 bg-blue-50"> 
+                
+                <!-- Back -->
+                <a href="/">
+                    <div class="back border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-arrow-left p-2 fa-lg"></i>
+                        <button class="p-2 pl-2">Back</button>
+                    </div>
+                </a>
+                <!-- Create new -->
+                <a href="/download/create_key">
+                    <div class="create border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-circle-plus p-2 fa-lg"></i>
+                        <button class="p-2 pl-2">Create new key file</button>
+                    </div>
+                </a>
+                <!-- View Current key -->
+                <a href="/download/current_key">
+                    <div class="download border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-download p-2 fa-lg"></i>
+                        <button class="p-2 pl-2">Download Current Key</button>
+                    </div>
+                </a>
+                <!-- Upload key file -->
+                <a href="/">
+                    <div class="upload border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-upload p-2 fa-lg"></i>
+                        <button class="p-2 pl-2">Upload Key file</button>
+                    </div>
+                </a>
+
+                <!-- View -->
+                <a href="/keys">
+                    <div class="view border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-eye fa-lg p-2"></i>
+                        <button class="p-2 pl-2">View</button>
+                    </div>
+                </a>
+
+                <!-- Refresh -->
+                <a href="/encrypt">
+                    <div class="refresh  border border-gray-500 flex items-center hover:bg-black hover:text-white">
+                        <i class="fa-solid fa-arrows-rotate p-2 fa-lg"></i>
+                        <button href="/" class="p-2 pl-2">Refresh</button>
+                    </div>
+                </a>
+            </div>
+            <!-- upload files here -->
+            <form action="/encrypt" method="POST" enctype="multipart/form-data">
+                <div class="uploadbox h-96 w-full flex flex-col items-center justify-evenly">
+                    <div id="drop-area"
+                        class="border-2 border-dashed border-gray-300 h-80 cursor-pointer rounded-sm flex flex-col items-center justify-center"
+                        style="width: 50%;">
+                        <div class="flex flex-col justify-start gap-3">
+                            <input type="file" value="encryptFile" name="encryptFile">
+                            <p>Drag & Drop files here or click to select files</p>
+                        </div>
+                    </div>
+                    <div class="upload flex flex-row items-center">
+                        <kbd><span class="text-blue-900"><b>Encrypt</b></span> it!!!</kbd>
+                        <button class="uploadbtn ml-3 pl-2 pr-2 border border-black flex-row items-center gap-2"><i
+                                class="fa-solid fa-check" type="submit"></i> Click Here</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

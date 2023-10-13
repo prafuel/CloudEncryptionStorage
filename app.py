@@ -4,11 +4,11 @@ from datetime import datetime
 from random import randint
 
 # Local Modules
-from src.encrypt import generate_key,load_key
+from src.encrypt import generate_key,load_key,encrypt_file
 
 key_history = "/home/version/Desktop/cc/src/keys/key_history.txt"
 
-app = Flask("__name__")
+app = Flask("__name__",static_folder="static")
 
 app.config['JSON_FILE'] = "/home/version/Desktop/cc/src/json_key"
 app.config['KEY_FILE'] = "/home/version/Desktop/cc/src/keys/"
@@ -47,25 +47,35 @@ def index() :
 
     return render_template("index.html")
 
-@app.route("/keys",methods=["GET"])
+@app.route("/keys/",methods=["GET"])
 def viewKey():
-    keyList = []
-    with open(key_history,"r") as keys:
-        for key in keys:
-            keyList.append(key.strip())
-    return keyList
+    key = None
+    # with open(key_history,"r") as keys:
+    #     for key in keys:
+    #         keyList.append(key.strip())
+    # return keyList
+    try:
+        key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
+        key = load_key(key_file)
+    except:
+        pass
+    return key
+        
 
-@app.route("/download/current_key",methods=["GET"])
+@app.route("/download/current_key/",methods=["GET"])
 def download_key():
-    # New Key
-    key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
-    key = load_key(key_file)
+    try:
+        # New Key
+        key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
+        key = load_key(key_file)
 
-    # with open(key_history,"a") as k:
-    #     k.write(str(datetime.now())+ ", " + str(key) + "\n")
-    return send_file(key_file, as_attachment=True)
+        # with open(key_history,"a") as k:
+        #     k.write(str(datetime.now())+ ", " + str(key) + "\n")
+        return send_file(key_file, as_attachment=True)
+    except:
+        return redirect("/download/create_key/")
 
-@app.route("/download/create_key",methods=["GET"])
+@app.route("/download/create_key/",methods=["GET"])
 def create_new():
     key_file = f"/home/version/Desktop/cc/#test/generated_keys/{str(randint(1,100000))}.key"
     key = generate_key(key_file)
@@ -75,9 +85,23 @@ def create_new():
     return send_file(key_file, as_attachment=True)
     
 
-@app.route("/encrypt",methods=['GET'])
+@app.route("/encrypt/",methods=['GET','POST'])
 def encrypt():
-    return "Encrypt your File Here"
+    if request.method == "POST":
+        uploaded_files = {}
+
+        if "encryptFile" in request.files:
+            encryptFile = request.files["encryptFile"]
+            if encryptFile:
+                encryptFile.save(os.path.join(app.config['INPUT_FILE'], encryptFile.filename))
+                uploaded_files['INPUT_FILE'] = os.path.join(app.config['INPUT_FILE'], encryptFile.filename)
+
+                key = load_key("src/keys/encryption_key.key")
+                print(key)
+                encrypt_file(key,f"original/{encryptFile.filename}",f"#test/Encrypted/{encryptFile.filename}")
+                return send_file(f"#test/Encrypted/{encryptFile.filename}", as_attachment=True)
+
+    return render_template("encrypt.html")
 
 if __name__ == "__main__" :
     app.run(debug=True, port=8000)

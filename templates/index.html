@@ -58,15 +58,15 @@
                     <button class="p-2 pl-2">Decrypt</button>
                 </div>
 
-                <!-- Create -->
+                <!-- Generate -->
                 <a href="/download/create_key">
                     <div class="create border border-gray-500 flex items-center hover:bg-black hover:text-white">
                         <i class="fa-solid fa-circle-plus p-2 fa-lg"></i>
-                        <button class="p-2 pl-2">Create</button>
+                        <button class="p-2 pl-2">Generate</button>
                     </div>
                 </a>
 
-                <!-- Generate -->
+                <!-- Download -->
                 <a href="/download/current_key">
                     <div class="download border border-gray-500 flex items-center hover:bg-black hover:text-white">
                         <i class="fa-solid fa-download p-2 fa-lg"></i>
@@ -110,8 +110,8 @@
             <!-- Key Generation or Upload key file -->
             <div class="key h-16 w-full border border-black flex flex-row items-center">
                 <div class="w-full generate_key flex items-center justify-between ml-2 mr-2">
-                    <kbd>Generate or Upload Key file (example.key): <span class="text-red-600">(if new key file is
-                            existed previous one will be overrated)</span></kbd>
+                    <kbd>Upload Key file (example.key): <span class="text-red-600">(if new key file is
+                            existed previous one will be overwrite)</span></kbd>
                     <div class="or flex flex-row justify-between items-center gap-3">
                         <form action="/" method="POST" enctype="multipart/form-data">
                             <input type="file" value="keyFile" name="keyFile">
@@ -161,7 +161,7 @@
 
     </div>
 
-    <script src="../scripts/index.js"></script>
+    <script src="../static/index.js"></script>
 </body>
 
 </html>
