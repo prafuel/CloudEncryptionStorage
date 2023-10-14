@@ -7,6 +7,8 @@
     <title>Encrypted Cloud Storage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+
+    <link rel="icon" type="image/x-icon" href="../static/images/favicon.png">
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <style>
@@ -108,7 +110,7 @@
                 <div class="text ml-2">
                     <kbd>Get yourself a .json file on Google Cloud Console </kbd><a target="_blank"
                         href="https://support.site24x7.com/portal/en/kb/articles/how-to-upload-a-service-account-json-file-to-authenticate-site24x7-for-discovery-of-gcp-resources">
-                        <i class="fa-solid fa-link"></i> (*Link)</a>
+                        <i class="fa-solid fa-link"></i> (Link)</a>
                 </div>
                 <div class="or mr-2">
                     <form action="/" method="POST" enctype="multipart/form-data">
@@ -121,7 +123,7 @@
             <div class="key h-16 w-full flex flex-row items-center" style="background-color: rgba(16, 15, 15, 0.7);">
                 <div class="w-full generate_key flex items-center justify-between ml-2 mr-2">
                     <kbd>Upload Key file (example.key): <span class="text-red-600 font-black text-lg">
-                            (if new key file is existed previous one will be overwrite)</span></kbd>
+                            (if key file is existed, previous one will be overwrite)</span></kbd>
                     <div class="or flex flex-row justify-between items-center gap-3">
                         <form action="/" method="POST" enctype="multipart/form-data">
                             <input type="file" value="keyFile" name="keyFile">
