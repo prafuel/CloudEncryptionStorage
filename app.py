@@ -6,19 +6,22 @@ from random import randint
 # Local Modules
 from src.encrypt import generate_key,load_key,encrypt_file,decrypt_file
 
-key_history = "/home/version/Desktop/cc/src/keys/key_history.txt"
+from src.googleDriveApi.drive import on_drive
+from src.googleDriveApi.Download.download import download_file
+
+key_history = "./src/keys/key_history.txt"
 
 app = Flask("__name__",static_folder="static")
 
-app.config['JSON_FILE'] = "/home/version/Desktop/cc/src/json_key"
-app.config['KEY_FILE'] = "/home/version/Desktop/cc/src/keys/"
-app.config['INPUT_FILE'] = "/home/version/Desktop/cc/original/"
+app.config['JSON_FILE'] = "./src/json_key"
+app.config['KEY_FILE'] = "./src/keys/"
+app.config['INPUT_FILE'] = "./original/"
 
 @app.route("/",methods=['GET','POST'])
 def index() :
     if request.method == 'POST':
         uploaded_files = {}
-
+        print(request.files)
         # Check if a file was uploaded with the name 'jsonFile'
         if 'jsonFile' in request.files:
             json_file = request.files['jsonFile']
@@ -34,7 +37,7 @@ def index() :
                 uploaded_files['keyFile'] = os.path.join(app.config['KEY_FILE'], "encryption_key.key")
 
                 with open(key_history,"a") as k:
-                    k.write(str(datetime.now())+ ", " + str(load_key("/home/version/Desktop/cc/src/keys/encryption_key.key")) + "\n")
+                    k.write(str(datetime.now())+ ", " + str(load_key("./src/keys/encryption_key.key")) + "\n")
 
         # Check if a file was uploaded with the name 'fileInput'
         if "fileInput" in request.files:
@@ -42,6 +45,22 @@ def index() :
             if fileInput:
                 fileInput.save(os.path.join(app.config['INPUT_FILE'], fileInput.filename))
                 uploaded_files['fileInput'] = os.path.join(app.config['INPUT_FILE'], fileInput.filename)
+                try :
+                    key = load_key("./src/keys/encryption_key.key")
+                    JSON_FILE_PATH = "./src/json_key/southern-branch-377015.json"
+                    # Encrypt Data 
+                    encrypt_file(key,f"original/{fileInput.filename}",f"#test/Encrypted/encrypted_{fileInput.filename}")
+
+                    # on Drive
+                    file_id = on_drive(JSON_FILE_PATH,f"#test/Encrypted/encrypted_{fileInput.filename}")
+                    with open(f"#test/Upload/id_{fileInput.filename}","w") as file:
+                        file.write(str(datetime.now()) + "\n")
+                        file.write(file_id + "\n")
+                        file.write(str(key) + "\n")
+
+                    return send_file(f"#test/Upload/id_{fileInput.filename}",as_attachment=True)
+                except Exception as e:
+                    return f"ERROR : {e}"
 
         return render_template("index.html")
 
@@ -51,10 +70,10 @@ def index() :
 def viewKey():
     key = None
     try:
-        key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
+        key_file = "./src/keys/encryption_key.key"
         key = load_key(key_file)
-    except:
-        pass
+    except Exception as e:
+        return f"ERROR : {e}"
     return key
         
 
@@ -62,13 +81,13 @@ def viewKey():
 def download_key():
     try:
         # New Key
-        key_file = "/home/version/Desktop/cc/src/keys/encryption_key.key"
+        key_file = "./src/keys/encryption_key.key"
         key = load_key(key_file)
 
         with open(key_history,"a") as k:
             k.write(str(datetime.now())+ ", " + str(key) + "\n")
         return send_file(key_file, as_attachment=True)
-    except:
+    except Exception as e:
         return redirect("/download/create_key/")
 
 @app.route("/download/create_key/",methods=["GET"])
@@ -81,7 +100,7 @@ def create_new():
     return send_file(key_file, as_attachment=True)
     
 
-@app.route("/encrypt",methods=['GET','POST'])
+@app.route("/encrypt/",methods=['GET','POST'])
 def encrypt():
     if request.method == "POST":
         uploaded_files = {}
@@ -97,12 +116,12 @@ def encrypt():
                 try:
                     encrypt_file(key,f"original/{encryptFile.filename}",f"#test/Encrypted/encrypted_{encryptFile.filename}")
                     return send_file(f"#test/Encrypted/encrypted_{encryptFile.filename}", as_attachment=True)
-                except:
-                    pass
+                except Exception as e:
+                    return f"ERROR : {e}"
 
     return render_template("encrypt.html")
 
-@app.route("/decrypt",methods=['GET','POST'])
+@app.route("/decrypt/",methods=['GET','POST'])
 def decrypt():
     if request.method == "POST":
         uploaded_files = {}
@@ -118,8 +137,8 @@ def decrypt():
                 try:
                     decrypt_file(key,f"original/{decryptFile.filename}",f"#test/Decrypted/decrypted_{decryptFile.filename}")
                     return send_file(f"#test/Decrypted/decrypted_{decryptFile.filename}",as_attachment=True)
-                except:
-                    return "Uploaded File Format is Not supported"
+                except Exception as e:
+                    return f"Uploaded File Format is Not supported, ERROR : {e}"
 
     return render_template("decrypt.html")
 
@@ -132,7 +151,6 @@ def history():
     return keyList
 
 
+
 if __name__ == "__main__" :
-    # app.run(debug=True, port=8080)
-    # app.run(debug=False,port="0.0.0.0:5000")
-    app.run()
+    app.run(debug=True, port=8000)

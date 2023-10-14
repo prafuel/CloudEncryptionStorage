@@ -30,9 +30,10 @@ def on_drive(JSON_KEY_PATH: str, file_path: str):
 
     print(f'File ID: {file["id"]}')
 
-    file_id = open("/home/version/Desktop/cc/src/googleDriveApi/file_id.txt", "a")
+    file_id = open("./src/googleDriveApi/file_id.txt", "a")
     file_id.write(file_name + ": " + file['id'] + "\n")
     file_id.close()
+    return file["id"]
 
 
 if __name__ == "__main__":

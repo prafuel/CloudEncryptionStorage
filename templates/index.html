@@ -22,7 +22,7 @@
 </style>
 
 <body>
-    <div class="bg-black h-screen mainBox flex flex-col gap-12"
+    <div class="bg-black h-screen mainBox flex flex-col gap-12 justify-center items-center"
         style="background-image: url('../static/images/background2.jpg');background-size:cover; background-repeat: no-repeat;">
         <div class="heading fixed top-0 w-full"> <!--fixed top-0 w-full-->
             <div class="w-full h-14 flex items-center" style="background-color: rgba(11, 13, 17, 0.6);">
@@ -45,9 +45,10 @@
         </div>
 
         <!-- top heading margin space -->
-        <div class="headingMargin h-5"></div>
+        <!-- <div class="headingMargin h-5"></div> -->
 
-        <div class="config h-60 bg-transparent flex flex-col-reverse pl-3 pr-3 gap-3 justify-evenly">
+        <div
+            class="config h-60  w-full bg-transparent flex flex-col-reverse pl-3 pr-3 gap-3 justify-around">
             <!-- Encrypt , Decrypt , Generate , View, Refresh -->
             <div class="options h-16 w-full flex flex-row-reverse justify-between items-center ">
                 <div class="group1-options flex flex-row gap-7">
@@ -132,17 +133,16 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="services">
             <div class="uploadFiles h-96">
                 <!-- upload files here -->
-                <form action="/" method="POST" enctype="multipart/form-data">
-                    <div class="uploadbox h-96 flex flex-col items-center justify-evenly">
+                <form action="/" method="POST" enctype="multipart/form-data" class="h-full w-screen flex flex-row gap-5">
+                    <div class="uploadbox h-full w-full flex flex-col items-center justify-evenly gap-3">
                         <div id="drop-area"
-                            class="border-2 border-dashed border-gray-300 h-80 cursor-pointer rounded-sm flex flex-col items-center justify-center"
-                            style="width: 50%;background-color: rgba(11, 13, 17, 0.6);">
+                            class=" h-full border border-white cursor-pointer rounded-sm flex flex-col items-center justify-center"
+                            style="width: 76%; background-color: rgba(11, 13, 17, 0.6);">
                             <div class="flex flex-col justify-start gap-3">
                                 <input type="file" value="fileInput" name="fileInput">
                                 <p>Drag & Drop files here or click to select files</p>
@@ -152,8 +152,26 @@
                             <kbd><span><b class="text-blue-500">Encrypt</b></span> and <span><b
                                         class="text-blue-500">Upload</b></span> it on drive!!!</kbd>
                             <button
-                                class="ml-3 p-1 border border-black flex-row items-center gap-2 bg-yellow-500 text-black rounded-lg"
-                                type="submit"><i class="fa-solid fa-check text-black"></i> Click Here</button>
+                                class="ml-3 p-1 border border-white flex-row items-center gap-2 bg-yellow-500 text-black rounded-lg"
+                                type="submit">Click Here</button>
+                                <!-- <i class="fa-solid fa-check text-black"></i> -->
+                        </div>
+                    </div>
+                    <div class="file-id h-full w-full flex flex-col items-center justify-evenly gap-3">
+                        <div id="getinput"
+                            class=" h-full border border-white cursor-pointer rounded-sm flex flex-col items-center justify-center"
+                            style="width: 76%; background-color: rgba(11, 13, 17, 0.6);">
+                            <div class="h-16 flex flex-col justify-start gap-3" style="width: 90%;">
+                                <input class="h-full w-full bg-black p-5 outline-none rounded-xl border-2 border-yellow-500 text-lg" type="text" placeholder="Enter File ID : 1jC2dd****************kgUcOAs9_9D" name="fileId">
+                            </div>
+                        </div>
+                        <div class="upload flex flex-row items-center">
+                            <kbd><span><b class="text-blue-500">Decrypt</b></span> and <span><b
+                                        class="text-blue-500">Download</b></span> from drive!!!</kbd>
+                            <button
+                                class="ml-3 p-1 border border-white flex-row items-center gap-2 bg-yellow-500 text-black rounded-lg"
+                                type="submit">Click Here</button>
+                                <!-- <i class="fa-solid fa-check text-black"></i> -->
                         </div>
                     </div>
                 </form>
@@ -171,7 +189,6 @@
                             class="fa-brands fa-linkedin fa-2xl"></i></a></div>
             </div>
         </footer>
-
     </div>
 
     <script src="../static/index.js"></script>
