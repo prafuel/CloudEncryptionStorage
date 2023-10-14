@@ -73,7 +73,7 @@ def download_key():
 
 @app.route("/download/create_key/",methods=["GET"])
 def create_new():
-    key_file = f"/home/version/Desktop/cc/#test/generated_keys/{str(randint(1,100000))}.key"
+    key_file = f"./#test/generated_keys/{str(randint(1,100000))}.key"
     key = generate_key(key_file)
 
     with open(key_history,"a") as k:
@@ -134,4 +134,5 @@ def history():
 
 if __name__ == "__main__" :
     # app.run(debug=True, port=8080)
-    app.run(debug=False,port="0.0.0.0")
+    # app.run(debug=False,port="0.0.0.0:5000")
+    app.run()
