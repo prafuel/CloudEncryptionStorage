@@ -5,11 +5,11 @@ from src.googleDriveApi.drive import on_drive
 from src.googleDriveApi.Download.download import download_file
 
 if __name__ == "__main__":
-    key_file = './src/keys/encryption_key.key'
+    key_file = 'src/keys/encryption_key.key'
 
-    input_folder = './original'
-    encrypted_folder = './Encrypted'
-    decrypted_folder = './Decrypted'
+    input_folder = 'original'
+    encrypted_folder = 'Encrypted'
+    decrypted_folder = 'Decrypted'
 
 
     # Generating key
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     # print(key)
 
     # Files to be encrypted 
-    folder_path = "./original/"
+    folder_path = "original/"
 
     file_names = os.listdir(folder_path)
     for name in file_names:
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
 
     # Decrypt Files from Encrypted Folder
-    decry_save_path = "./#test/Decrypted/"
+    decry_save_path = "#test/Decrypted/"
     file_names = os.listdir("#test/Encrypted/")
     for name in file_names:
         file = f"#test/Encrypted/{name}"

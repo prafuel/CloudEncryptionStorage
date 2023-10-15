@@ -3,12 +3,12 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 # Set the path to your JSON key file
-JSON_KEY_FILE = "../json_key/southern-branch-377015.json"
+JSON_KEY_FILE = "cc/src/json_key/southern-branch-377015.json"
 
 
 # Define the file to upload
-file_name = 'requirement.txt'
-file_path = '../requirement.txt'
+file_name = 'requirements.txt'
+file_path = 'requirements.txt'
 
 
 def on_drive(JSON_KEY_PATH: str, file_path: str):
@@ -30,14 +30,14 @@ def on_drive(JSON_KEY_PATH: str, file_path: str):
 
     print(f'File ID: {file["id"]}')
 
-    file_id = open("./src/googleDriveApi/file_id.txt", "a")
+    file_id = open("src/googleDriveApi/file_id.txt", "a")
     file_id.write(file_name + ": " + file['id'] + "\n")
     file_id.close()
     return file["id"]
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    JSON_KEY_FILE = "../json_key/southern-branch-377015.json"
-    file_path = "../#test/text1.txt"
-    on_drive(JSON_KEY_FILE, file_path)
+#     JSON_KEY_FILE = "../json_key/southern-branch-377015.json"
+#     file_path = "../#test/text1.txt"
+#     on_drive(JSON_KEY_FILE, file_path)

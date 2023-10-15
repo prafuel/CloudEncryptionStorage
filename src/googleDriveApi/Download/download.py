@@ -23,9 +23,9 @@ def download_file(file_id : str, JSON_KEY_FILE : str, local_file_path : str) -> 
     print(f"Downloaded file to {local_file_path}")
 
 
-if __name__ == "__main__" :
-    file_id = "13MkVcS-yMiCEo7tcuRXe8qBooqNA3SY_"
-    JSON_KEY_FILE = '../../json_key/southern-branch-377015.json'
-    file_name = "temp1"
+# if __name__ == "__main__" :
+#     file_id = "13MkVcS-yMiCEo7tcuRXe8qBooqNA3SY_"
+#     JSON_KEY_FILE = '../../json_key/southern-branch-377015.json'
+#     file_name = "temp1"
 
-    download_file(file_id=file_id, JSON_KEY_FILE=JSON_KEY_FILE, file_name=file_name)
+#     download_file(file_id=file_id, JSON_KEY_FILE=JSON_KEY_FILE, file_name=file_name)

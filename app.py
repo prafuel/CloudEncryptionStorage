@@ -9,15 +9,15 @@ from src.encrypt import generate_key,load_key,encrypt_file,decrypt_file
 from src.googleDriveApi.drive import on_drive
 from src.googleDriveApi.Download.download import download_file
 
-key_history = "./src/keys/key_history.txt"
+key_history = "src/keys/key_history.txt"
 
 app = Flask("__name__",static_folder="static")
 
-app.config['JSON_FILE'] = "./src/json_key"
-app.config['KEY_FILE'] = "./src/keys/"
-app.config['INPUT_FILE'] = "./original/"
+app.config['JSON_FILE'] = "src/json_key"
+app.config['KEY_FILE'] = "src/keys/"
+app.config['INPUT_FILE'] = "original/"
 
-JSON_FILE_PATH = "./src/json_key/southern-branch-377015.json"
+JSON_FILE_PATH = "src/json_key/southern-branch-377015.json"
 
 @app.route("/",methods=['GET','POST'])
 def index() :
@@ -39,7 +39,7 @@ def index() :
                 uploaded_files['keyFile'] = os.path.join(app.config['KEY_FILE'], "encryption_key.key")
 
                 with open(key_history,"a") as k:
-                    k.write(str(datetime.now())+ ", " + str(load_key("./src/keys/encryption_key.key")) + "\n")
+                    k.write(str(datetime.now())+ ", " + str(load_key("src/keys/encryption_key.key")) + "\n")
 
         # Check if a file was uploaded with the name 'fileInput'
         if "fileInput" in request.files:
@@ -48,7 +48,7 @@ def index() :
                 fileInput.save(os.path.join(app.config['INPUT_FILE'], fileInput.filename))
                 uploaded_files['fileInput'] = os.path.join(app.config['INPUT_FILE'], fileInput.filename)
                 try :
-                    key = load_key("./src/keys/encryption_key.key")
+                    key = load_key("src/keys/encryption_key.key")
                     
                     # Encrypt Data 
                     encrypt_file(key,f"original/{fileInput.filename}",f"#test/Encrypted/encrypted_{fileInput.filename}")
@@ -66,7 +66,7 @@ def index() :
         
         try:
             import string
-            key = load_key("./src/keys/encryption_key.key")
+            key = load_key("src/keys/encryption_key.key")
             id = request.form.get("fileId")
             check = len(id.translate({ord(c): None for c in string.whitespace}))
             if check:
@@ -92,7 +92,7 @@ def index() :
 def viewKey():
     key = None
     try:
-        key_file = "./src/keys/encryption_key.key"
+        key_file = "src/keys/encryption_key.key"
         key = load_key(key_file)
     except Exception as e:
         return f"ERROR : {e}"
@@ -103,7 +103,7 @@ def viewKey():
 def download_key():
     try:
         # New Key
-        key_file = "./src/keys/encryption_key.key"
+        key_file = "src/keys/encryption_key.key"
         key = load_key(key_file)
 
         with open(key_history,"a") as k:
@@ -114,7 +114,7 @@ def download_key():
 
 @app.route("/download/create_key/",methods=["GET"])
 def create_new():
-    key_file = f"./#test/generated_keys/{str(randint(1,100000))}.key"
+    key_file = f"#test/generated_keys/{str(randint(1,100000))}.key"
     key = generate_key(key_file)
 
     with open(key_history,"a") as k:
