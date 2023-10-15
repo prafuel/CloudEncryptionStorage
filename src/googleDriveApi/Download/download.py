@@ -3,13 +3,13 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 
-def download_file(file_id : str, JSON_KEY_FILE : str, file_name : str) -> None:
+def download_file(file_id : str, JSON_KEY_FILE : str, local_file_path : str) -> None:
     # Authenticate with the Google Drive API using the service account key
     creds = service_account.Credentials.from_service_account_file(JSON_KEY_FILE, scopes=['https://www.googleapis.com/auth/drive'])
     drive_service = build('drive', 'v3', credentials=creds)
 
     # Define the local path where you want to save the downloaded file
-    local_file_path = f'/home/version/Desktop/cc/#test/Encrypted/{file_name}.txt'
+    # local_file_path = f'./#test/Encrypted/{file_name}.txt'
 
     # Download the file from Google Drive
     request = drive_service.files().get_media(fileId=file_id)

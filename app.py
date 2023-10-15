@@ -17,11 +17,13 @@ app.config['JSON_FILE'] = "./src/json_key"
 app.config['KEY_FILE'] = "./src/keys/"
 app.config['INPUT_FILE'] = "./original/"
 
+JSON_FILE_PATH = "./src/json_key/southern-branch-377015.json"
+
 @app.route("/",methods=['GET','POST'])
 def index() :
     if request.method == 'POST':
         uploaded_files = {}
-        print(request.files)
+        # print(request.files)
         # Check if a file was uploaded with the name 'jsonFile'
         if 'jsonFile' in request.files:
             json_file = request.files['jsonFile']
@@ -47,7 +49,7 @@ def index() :
                 uploaded_files['fileInput'] = os.path.join(app.config['INPUT_FILE'], fileInput.filename)
                 try :
                     key = load_key("./src/keys/encryption_key.key")
-                    JSON_FILE_PATH = "./src/json_key/southern-branch-377015.json"
+                    
                     # Encrypt Data 
                     encrypt_file(key,f"original/{fileInput.filename}",f"#test/Encrypted/encrypted_{fileInput.filename}")
 
@@ -61,6 +63,26 @@ def index() :
                     return send_file(f"#test/Upload/id_{fileInput.filename}",as_attachment=True)
                 except Exception as e:
                     return f"ERROR : {e}"
+        
+        try:
+            import string
+            key = load_key("./src/keys/encryption_key.key")
+            id = request.form.get("fileId")
+            check = len(id.translate({ord(c): None for c in string.whitespace}))
+            if check:
+                # [id,JSON_FILE_PATH,local_file_path]
+                local_file_path = f"#test/Encrypted/{id}.txt"
+                # Downloading file from drive
+                download_file(id.strip(),JSON_FILE_PATH,local_file_path)
+
+                # Decrypt Downloaded file
+                decrypt_file(key,local_file_path,local_file_path)
+                
+                # Clearing input section
+                request.form.fileId = " "
+                return send_file(local_file_path,as_attachment=True)
+        except Exception as e:
+            print(e)
 
         return render_template("index.html")
 
