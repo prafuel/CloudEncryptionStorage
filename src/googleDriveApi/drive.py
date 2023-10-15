@@ -3,7 +3,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 # Set the path to your JSON key file
-JSON_KEY_FILE = "cc/src/json_key/southern-branch-377015.json"
+# JSON_KEY_FILE = "cc/src/json_key/southern-branch-377015.json"
 
 
 # Define the file to upload
