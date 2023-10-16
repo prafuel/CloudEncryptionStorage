@@ -17,8 +17,10 @@ Clone project : ``` git clone https://github.com/prafuel/CloudEncryptionStorage.
 Generate or Download Specific Key by Clicking on <b>Download Current Key</b> or <b>Generate</b> new one, 🧠 just save that key of future used <br>
 ![](https://github.com/prafuel/CloudEncryptionStorage/blob/master/screenshots/4.png)
 
-<div>👨‍💻 <b>Pro Tip</b> : use only 2 or 3 specific 🔑s, for encryption so you never confuse</div> <br>
-Sample key :
+<div>👨‍💻 <b>Pro Tip</b> : use only 2 or 3 specific 🔑s, for encryption so you never confuse </div> <br>
+
+Sample Key:
+
 ![](https://github.com/prafuel/CloudEncryptionStorage/blob/master/screenshots/5.png)
 
 🔒 Encrypt file : just upload key file and original data it will returns encrypted file
@@ -34,5 +36,5 @@ Sample key :
 
 
 📝 just created as my Cloud Project for my college, more improvement will be done by time, <br>
-☑️ using file id : update,delete,insert file on GCP (Google Cloud Provide)
+☑️ using file id : update,delete,insert operation can be done on GCP (Google Cloud Provide)
 
