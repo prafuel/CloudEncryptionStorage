@@ -36,5 +36,4 @@ Sample Key:
 
 
 📝 just created as my Cloud Project for my college, more improvement will be done by time, <br>
-☑️ using file id : update,delete,insert operation can be done on GCP (Google Cloud Provide)
 
