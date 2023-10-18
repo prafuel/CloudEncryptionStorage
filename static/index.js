@@ -22,3 +22,13 @@ dropArea.addEventListener('drop', (e) => {
 
 const clickHere = document.querySelector(".upload button");
 console.log(clickHere);
+
+// const expandSearch = () => {
+//     // alert(1);
+//     const searchInput = document.querySelector("#searchInput");
+//     const search = document.querySelector("#search");
+//     if(searchInput.classList.contains("hidden")) {
+//         searchInput.classList.remove("hidden");
+//         search.classList.add("hidden");
+//     }
+// }

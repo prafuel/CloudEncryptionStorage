@@ -31,7 +31,14 @@
                 </div>
                 <nav class="navbar w-full h-14 flex">
                     <ul class="h-full w-full flex flex-row gap-10 justify-end items-center mr-10">
-                        <li><a href="#search"><i class="fa-solid fa-magnifying-glass p-1 cursor-pointer"></i> Search</a></li>
+                        <li class="pt-2 pb-1 w-80 border-white flex flex-row justify-end items-center">
+                            <div class="flex flex-row items-center justify-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass p-1 cursor-pointer"></i>
+                                <input id="searchInput"
+                                    class="bg-black h-full outline-none p-3 rounded-xl"
+                                    placeholder="Search" type="text">
+                            </div>
+                        </li>
                         <li><a href="#home"><i class="fa-solid fa-house fa-sm p-1 cursor-pointer"></i> Home</a></li>
                         <li><a href="#about"><i class="fa-solid fa-hashtag p-1 cursor-pointer"></i> About</a></li>
                         <li><a href="#services"><i class="fa-solid fa-gears p-1 cursor-pointer"></i> Services</a></li>
